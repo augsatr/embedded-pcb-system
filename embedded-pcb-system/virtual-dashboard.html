@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded PCB System - Virtual Sensor Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #00ff00;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .header p { color: #00aa00; margin-top: 5px; }
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #003300;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .status.active { animation: blink 1s infinite; }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .card h2 {
+            color: #00ffff;
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .sensor-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .sensor-label {
+            font-size: 12px;
+            color: #888;
+        }
+        .value-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            padding: 8px;
+            background: #1a1a1a;
+            border-radius: 5px;
+        }
+        .value-row .label { color: #888; }
+        .value-row .value { color: #00ff00; font-weight: bold; }
+        .chart-container {
+            height: 150px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .chart-canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .stat-box {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .stat-box .stat-label { font-size: 10px; color: #888; }
+        .stat-box .stat-value { font-size: 14px; color: #00ff00; margin-top: 5px; }
+        .log-container {
+            grid-column: 1 / -1;
+        }
+        .log-box {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            font-size: 12px;
+        }
+        .log-entry { margin: 3px 0; }
+        .log-time { color: #666; }
+        .log-ok { color: #00ff00; }
+        .log-warn { color: #ffff00; }
+        .log-err { color: #ff0000; }
+        .btn {
+            background: #003300;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: inherit;
+            margin: 5px;
+        }
+        .btn:hover { background: #004400; }
+        .btn.active { background: #00ff00; color: #000; }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .frequency { color: #ffff00; }
+        .ic {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .ic.on { background: #00ff00; box-shadow: 0 0 10px #00ff00; }
+        .ic.off { background: #ff0000; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>EMBEDDED PCB SYSTEM - VIRTUAL SENSOR DASHBOARD</h1>
+        <p>STM32F103C8T6 | BME280 (I2C) | LSM6DS3 (SPI)</p>
+        <div class="status active">
+            <span class="ic on"></span> SIMULATION ACTIVE | <span id="uptime">00:00:00</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="controls">
+            <button class="btn active" onclick="toggleSimulation()" id="btnToggle">STOP</button>
+            <button class="btn" onclick="resetData()">RESET</button>
+            <button class="btn" onclick="exportData()">EXPORT JSON</button>
+            <span style="margin-left: 20px;">Rate: <span class="frequency" id="rate">10</span> Hz | Samples: <span id="sampleCount">0</span></span>
+        </div>
+
+        <div class="grid">
+            <!-- BME280 Temperature -->
+            <div class="card">
+                <h2><span class="ic on"></span> BME280 - Temperature (I2C)</h2>
+                <div class="sensor-value" id="tempValue">25.00 C</div>
+                <div class="chart-container">
+                    <canvas class="chart-canvas" id="tempChart"></canvas>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">AVG</div>
+                        <div class="stat-value" id="tempAvg">25.00 C</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">MIN</div>
+                        <div class="stat-value" id="tempMin">--</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">MAX</div>
+                        <div class="stat-value" id="tempMax">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BME280 Pressure -->
+            <div class="card">
+                <h2><span class="ic on"></span> BME280 - Pressure (I2C)</h2>
+                <div class="sensor-value" id="presValue">101325.0 Pa</div>
+                <div class="chart-container">
+                    <canvas class="chart-canvas" id="presChart"></canvas>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">AVG</div>
+                        <div class="stat-value" id="presAvg">101325.0 Pa</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">MIN</div>
+                        <div class="stat-value" id="presMin">--</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">MAX</div>
+                        <div class="stat-value" id="presMax">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BME280 Humidity -->
+            <div class="card">
+                <h2><span class="ic on"></span> BME280 - Humidity (I2C)</h2>
+                <div class="sensor-value" id="humValue">45.0 %</div>
+                <div class="chart-container">
+                    <canvas class="chart-canvas" id="humChart"></canvas>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">AVG</div>
+                        <div class="stat-value" id="humAvg">45.0 %</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">MIN</div>
+                        <div class="stat-value" id="humMin">--</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">MAX</div>
+                        <div class="stat-value" id="humMax">--</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LSM6DS3 Accelerometer -->
+            <div class="card">
+                <h2><span class="ic on"></span> LSM6DS3 - Accelerometer (SPI)</h2>
+                <div class="value-row">
+                    <span class="label">X:</span>
+                    <span class="value" id="accelX">+204 mg</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">Y:</span>
+                    <span class="value" id="accelY">-102 mg</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">Z:</span>
+                    <span class="value" id="accelZ">+16384 mg</span>
+                </div>
+                <div class="chart-container">
+                    <canvas class="chart-canvas" id="accelChart"></canvas>
+                </div>
+            </div>
+
+            <!-- LSM6DS3 Gyroscope -->
+            <div class="card">
+                <h2><span class="ic on"></span> LSM6DS3 - Gyroscope (SPI)</h2>
+                <div class="value-row">
+                    <span class="label">X:</span>
+                    <span class="value" id="gyroX">+128 dps</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">Y:</span>
+                    <span class="value" id="gyroY">-64 dps</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">Z:</span>
+                    <span class="value" id="gyroZ">+32 dps</span>
+                </div>
+                <div class="chart-container">
+                    <canvas class="chart-canvas" id="gyroChart"></canvas>
+                </div>
+            </div>
+
+            <!-- System Info -->
+            <div class="card">
+                <h2><span class="ic on"></span> System Information</h2>
+                <div class="value-row">
+                    <span class="label">MCU:</span>
+                    <span class="value">STM32F103C8T6</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">Clock:</span>
+                    <span class="value">72 MHz</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">I2C Bus:</span>
+                    <span class="value">100 kHz</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">SPI Bus:</span>
+                    <span class="value">4.5 MHz</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">VCC:</span>
+                    <span class="value">3.3V</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">BME280 Addr:</span>
+                    <span class="value">0x76</span>
+                </div>
+                <div class="value-row">
+                    <span class="label">LSM6DS3 ID:</span>
+                    <span class="value">0x69</span>
+                </div>
+            </div>
+
+            <!-- Log -->
+            <div class="card log-container">
+                <h2><span class="ic on"></span> System Log</h2>
+                <div class="log-box" id="logBox">
+                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">System initialized</span></div>
+                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">I2C1 initialized at 100kHz</span></div>
+                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">SPI1 initialized: Mode 0, Prescaler 16</span></div>
+                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">BME280 detected at 0x76</span></div>
+                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">LSM6DS3 detected: WHO_AM_I = 0x69</span></div>
+                    <div class="log-entry"><span class="log-time">[00:00:01]</span> <span class="log-ok">Virtual simulation started</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let running = true;
+        let sampleCount = 0;
+        let startTime = Date.now();
+        let tempData = [], presData = [], humData = [];
+        let accelXData = [], accelYData = [], accelZData = [];
+        let gyroXData = [], gyroYData = [], gyroZData = [];
+        const maxDataPoints = 60;
+
+        function simulateTemperature() {
+            const base = 25.0;
+            const noise = (Math.random() - 0.5) * 1.0;
+            const drift = Math.sin(Date.now() / 10000) * 0.5;
+            return base + noise + drift;
+        }
+
+        function simulatePressure() {
+            return 101325.0 + (Math.random() - 0.5) * 2.0;
+        }
+
+        function simulateHumidity() {
+            const base = 45.0;
+            const noise = (Math.random() - 0.5) * 0.5;
+            const drift = Math.sin(Date.now() / 15000) * 2.0;
+            return Math.max(0, Math.min(100, base + noise + drift));
+        }
+
+        function simulateAccel() {
+            return [
+                204 + Math.floor((Math.random() - 0.5) * 20),
+                -102 + Math.floor((Math.random() - 0.5) * 20),
+                16384 + Math.floor((Math.random() - 0.5) * 100)
+            ];
+        }
+
+        function simulateGyro() {
+            return [
+                128 + Math.floor((Math.random() - 0.5) * 40),
+                -64 + Math.floor((Math.random() - 0.5) * 40),
+                32 + Math.floor((Math.random() - 0.5) * 40)
+            ];
+        }
+
+        function drawChart(canvasId, data, color, min, max) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width = canvas.offsetWidth;
+            const h = canvas.height = canvas.offsetHeight;
+
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            for (let i = 0; i <= 4; i++) {
+                const y = (h / 4) * i;
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
+
+            if (data.length < 2) return;
+
+            const dataMin = Math.min(...data);
+            const dataMax = Math.max(...data);
+            const range = dataMax - dataMin || 1;
+
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let i = 0; i < data.length; i++) {
+                const x = (w / (maxDataPoints - 1)) * i;
+                const y = h - ((data[i] - dataMin) / range) * (h - 20) - 10;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+
+            ctx.fillStyle = color;
+            ctx.shadowColor = color;
+            ctx.shadowBlur = 10;
+            const lastX = (w / (maxDataPoints - 1)) * (data.length - 1);
+            const lastY = h - ((data[data.length - 1] - dataMin) / range) * (h - 20) - 10;
+            ctx.beginPath();
+            ctx.arc(lastX, lastY, 4, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        function updateStats() {
+            const calcStats = (data, unit) => {
+                if (data.length === 0) return { avg: '--', min: '--', max: '--' };
+                const avg = data.reduce((a, b) => a + b, 0) / data.length;
+                const min = Math.min(...data);
+                const max = Math.max(...data);
+                return {
+                    avg: avg.toFixed(2) + ' ' + unit,
+                    min: min.toFixed(2) + ' ' + unit,
+                    max: max.toFixed(2) + ' ' + unit
+                };
+            };
+
+            const tempStats = calcStats(tempData, 'C');
+            document.getElementById('tempAvg').textContent = tempStats.avg;
+            document.getElementById('tempMin').textContent = tempStats.min;
+            document.getElementById('tempMax').textContent = tempStats.max;
+
+            const presStats = calcStats(presData, 'Pa');
+            document.getElementById('presAvg').textContent = presStats.avg;
+            document.getElementById('presMin').textContent = presStats.min;
+            document.getElementById('presMax').textContent = presStats.max;
+
+            const humStats = calcStats(humData, '%');
+            document.getElementById('humAvg').textContent = humStats.avg;
+            document.getElementById('humMin').textContent = humStats.min;
+            document.getElementById('humMax').textContent = humStats.max;
+        }
+
+        function updateData() {
+            if (!running) return;
+
+            sampleCount++;
+
+            const temp = simulateTemperature();
+            const pres = simulatePressure();
+            const hum = simulateHumidity();
+            const accel = simulateAccel();
+            const gyro = simulateGyro();
+
+            tempData.push(temp);
+            presData.push(pres);
+            humData.push(hum);
+            accelXData.push(accel[0]);
+            accelYData.push(accel[1]);
+            accelZData.push(accel[2]);
+            gyroXData.push(gyro[0]);
+            gyroYData.push(gyro[1]);
+            gyroZData.push(gyro[2]);
+
+            if (tempData.length > maxDataPoints) tempData.shift();
+            if (presData.length > maxDataPoints) presData.shift();
+            if (humData.length > maxDataPoints) humData.shift();
+            if (accelXData.length > maxDataPoints) { accelXData.shift(); accelYData.shift(); accelZData.shift(); }
+            if (gyroXData.length > maxDataPoints) { gyroXData.shift(); gyroYData.shift(); gyroZData.shift(); }
+
+            document.getElementById('tempValue').textContent = temp.toFixed(2) + ' C';
+            document.getElementById('presValue').textContent = pres.toFixed(1) + ' Pa';
+            document.getElementById('humValue').textContent = hum.toFixed(1) + ' %';
+            document.getElementById('accelX').textContent = (accel[0] >= 0 ? '+' : '') + accel[0] + ' mg';
+            document.getElementById('accelY').textContent = (accel[1] >= 0 ? '+' : '') + accel[1] + ' mg';
+            document.getElementById('accelZ').textContent = (accel[2] >= 0 ? '+' : '') + accel[2] + ' mg';
+            document.getElementById('gyroX').textContent = (gyro[0] >= 0 ? '+' : '') + gyro[0] + ' dps';
+            document.getElementById('gyroY').textContent = (gyro[1] >= 0 ? '+' : '') + gyro[1] + ' dps';
+            document.getElementById('gyroZ').textContent = (gyro[2] >= 0 ? '+' : '') + gyro[2] + ' dps';
+            document.getElementById('sampleCount').textContent = sampleCount;
+
+            drawChart('tempChart', tempData, '#00ff00');
+            drawChart('presChart', presData, '#00ffff');
+            drawChart('humChart', humData, '#ffff00');
+            drawChart('accelChart', accelXData, '#ff6600');
+            drawChart('gyroChart', gyroXData, '#ff00ff');
+
+            updateStats();
+        }
+
+        function toggleSimulation() {
+            running = !running;
+            const btn = document.getElementById('btnToggle');
+            btn.textContent = running ? 'STOP' : 'START';
+            btn.classList.toggle('active', running);
+
+            const status = document.querySelector('.status');
+            status.classList.toggle('active', running);
+
+            addLog(running ? 'Simulation resumed' : 'Simulation paused', 'warn');
+        }
+
+        function resetData() {
+            tempData = []; presData = []; humData = [];
+            accelXData = []; accelYData = []; accelZData = [];
+            gyroXData = []; gyroYData = []; gyroZData = [];
+            sampleCount = 0;
+            startTime = Date.now();
+            addLog('Data reset', 'ok');
+        }
+
+        function exportData() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                samples: sampleCount,
+                sensors: {
+                    bme280: {
+                        temperature: tempData,
+                        pressure: presData,
+                        humidity: humData
+                    },
+                    lsm6ds3: {
+                        accel_x: accelXData,
+                        accel_y: accelYData,
+                        accel_z: accelZData,
+                        gyro_x: gyroXData,
+                        gyro_y: gyroYData,
+                        gyro_z: gyroZData
+                    }
+                }
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'sensor_data_' + Date.now() + '.json';
+            a.click();
+            addLog('Data exported to JSON', 'ok');
+        }
+
+        function addLog(msg, type) {
+            const logBox = document.getElementById('logBox');
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const time = new Date(elapsed * 1000).toISOString().substr(11, 8);
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = '<span class="log-time">[' + time + ']</span> <span class="log-' + type + '">' + msg + '</span>';
+            logBox.appendChild(entry);
+            logBox.scrollTop = logBox.scrollHeight;
+            if (logBox.children.length > 100) logBox.removeChild(logBox.firstChild);
+        }
+
+        function updateUptime() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const h = Math.floor(elapsed / 3600).toString().padStart(2, '0');
+            const m = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
+            const s = (elapsed % 60).toString().padStart(2, '0');
+            document.getElementById('uptime').textContent = h + ':' + m + ':' + s;
+        }
+
+        setInterval(updateData, 100);
+        setInterval(updateUptime, 1000);
+
+        addLog('BME280 configured: OSRS_T=2x, OSRS_P=16x, OSRS_H=1x, Normal mode', 'ok');
+        addLog('LSM6DS3 configured: XL=119Hz/2g, G=119Hz/245dps', 'ok');
+    </script>
+</body>
+</html>
