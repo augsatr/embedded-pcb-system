@@ -61,28 +61,7 @@ This project implements a custom-designed PCB for interfacing with multiple sens
 
 ### System Architecture
 
-```
-+------------------+     +------------------+     +------------------+
-|                  |     |                  |     |                  |
-|   BME280         |     |   STM32F103C8T6  |     |   LSM6DS3        |
-|   (I2C Sensor)   +---->+   (MCU)          +<----+   (SPI Sensor)   |
-|                  |     |                  |     |                  |
-+------------------+     +--------+---------+     +------------------+
-                                  |
-                         +--------+---------+
-                         |                  |
-                         |   LM1117-3.3V    |
-                         |   (Regulator)    |
-                         |                  |
-                         +------------------+
-                                  |
-                         +--------+---------+
-                         |                  |
-                         |   Power Supply   |
-                         |   (5V USB)       |
-                         |                  |
-                         +------------------+
-```
+![System Architecture](images/system-architecture.svg)
 
 ### PCB Specifications
 
@@ -99,6 +78,8 @@ This project implements a custom-designed PCB for interfacing with multiple sens
 ---
 
 ## PCB Design
+
+![PCB Layout](images/pcb-layout.svg)
 
 Designed in KiCad with the following components:
 
@@ -157,6 +138,8 @@ kicad/
 ---
 
 ## Firmware
+
+![Firmware Architecture](images/firmware-architecture.svg)
 
 ### Project Structure
 
@@ -313,6 +296,8 @@ embedded-pcb-system/virtual-dashboard.html
 
 ### 1. I2C Communication (BME280)
 
+![I2C Timing](images/i2c-timing.svg)
+
 ```
 Master (STM32)                    Slave (BME280)
      |                                  |
@@ -327,6 +312,8 @@ Master (STM32)                    Slave (BME280)
 ```
 
 ### 2. SPI Communication (LSM6DS3)
+
+![SPI Timing](images/spi-timing.svg)
 
 ```
 Master (STM32)                    Slave (LSM6DS3)
@@ -369,6 +356,8 @@ Raw Sensor Data
 ---
 
 ## Getting Started
+
+![Testing Workflow](images/testing-workflow.svg)
 
 ### Prerequisites
 
@@ -451,6 +440,8 @@ python sensor_simulator.py 60
 ---
 
 ## Pin Mapping
+
+![Pin Mapping](images/pin-mapping.svg)
 
 ### I2C1 (BME280)
 

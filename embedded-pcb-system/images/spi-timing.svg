@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="background:#1a1a2e">
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial" font-size="18" fill="#ff6600" text-anchor="middle" font-weight="bold">SPI COMMUNICATION TIMING</text>
+  
+  <!-- CS -->
+  <text x="30" y="80" font-family="Arial" font-size="12" fill="#ff6600">CS</text>
+  <line x1="80" y1="80" x2="750" y2="80" stroke="#333" stroke-width="1"/>
+  <polyline points="80,80 80,50 120,50 120,80 680,80 680,50 720,50 720,80 750,80" fill="none" stroke="#ff6600" stroke-width="2"/>
+  
+  <!-- SCK -->
+  <text x="30" y="140" font-family="Arial" font-size="12" fill="#ff6600">SCK</text>
+  <line x1="80" y1="140" x2="750" y2="140" stroke="#333" stroke-width="1"/>
+  <polyline points="80,140 120,140 120,110 140,110 140,140 160,140 160,110 180,110 180,140 200,140 200,110 220,110 220,140 240,140 240,110 260,110 260,140 280,140 280,110 300,110 300,140 320,140 320,110 340,110 340,140 360,140 360,110 380,110 380,140 400,140 400,110 420,110 420,140 440,140 440,110 460,110 460,140 480,140 480,110 500,110 500,140 520,140 520,110 540,110 540,140 560,140 560,110 580,110 580,140 600,140 600,110 620,110 620,140 640,140 640,110 660,110 660,140 680,140 680,140 720,140 720,170 750,170" fill="none" stroke="#ff6600" stroke-width="2"/>
+  
+  <!-- MOSI -->
+  <text x="30" y="200" font-family="Arial" font-size="12" fill="#ff6600">MOSI</text>
+  <line x1="80" y1="200" x2="750" y2="200" stroke="#333" stroke-width="1"/>
+  <polyline points="80,200 120,200 120,170 180,170 180,200 220,200 220,170 260,170 260,200 300,200 300,170 340,170 340,200 380,200 380,170 420,170 420,200 460,200 460,170 500,170 500,200 540,200 540,170 580,170 580,200 620,200 620,170 660,170 660,200 680,200 720,200" fill="none" stroke="#ff6600" stroke-width="2"/>
+  
+  <!-- MISO -->
+  <text x="30" y="260" font-family="Arial" font-size="12" fill="#ff6600">MISO</text>
+  <line x1="80" y1="260" x2="750" y2="260" stroke="#333" stroke-width="1"/>
+  <polyline points="80,260 120,260 160,260 160,230 200,230 200,260 240,260 240,230 280,230 280,260 320,260 320,230 360,230 360,260 400,260 400,230 440,230 440,260 480,260 480,230 520,230 520,260 560,260 560,230 600,230 600,260 640,260 640,230 660,230 660,260 680,260 720,260" fill="none" stroke="#ff6600" stroke-width="2"/>
+  
+  <!-- Annotations -->
+  <rect x="130" y="280" width="60" height="20" fill="#332200" stroke="#ff6600" stroke-width="1"/>
+  <text x="160" y="294" font-family="Arial" font-size="8" fill="#ff6600" text-anchor="middle">CMD</text>
+  
+  <rect x="200" y="280" width="200" height="20" fill="#332200" stroke="#ff6600" stroke-width="1"/>
+  <text x="300" y="294" font-family="Arial" font-size="8" fill="#ff6600" text-anchor="middle">DATA (8 bits x N)</text>
+  
+  <!-- Data bits -->
+  <text x="145" y="195" font-family="Arial" font-size="7" fill="#888">D7</text>
+  <text x="170" y="195" font-family="Arial" font-size="7" fill="#888">D6</text>
+  <text x="200" y="195" font-family="Arial" font-size="7" fill="#888">D5</text>
+  <text x="230" y="195" font-family="Arial" font-size="7" fill="#888">D4</text>
+  <text x="260" y="195" font-family="Arial" font-size="7" fill="#888">D3</text>
+  <text x="290" y="195" font-family="Arial" font-size="7" fill="#888">D2</text>
+  <text x="320" y="195" font-family="Arial" font-size="7" fill="#888">D1</text>
+  <text x="350" y="195" font-family="Arial" font-size="7" fill="#888">D0</text>
+  
+  <!-- Bus Speed -->
+  <rect x="200" y="310" width="400" height="80" fill="#0d1117" stroke="#333" stroke-width="1"/>
+  <text x="400" y="330" font-family="Arial" font-size="12" fill="#ff6600" text-anchor="middle" font-weight="bold">SPI Bus Parameters</text>
+  
+  <text x="220" y="355" font-family="Arial" font-size="10" fill="#888">Clock Speed:</text>
+  <text x="350" y="355" font-family="Arial" font-size="10" fill="#00ff00">4.5 MHz (Prescaler 16)</text>
+  
+  <text x="220" y="375" font-family="Arial" font-size="10" fill="#888">Mode:</text>
+  <text x="350" y="375" font-family="Arial" font-size="10" fill="#00ff00">CPOL=0, CPHA=0 (Mode 0)</text>
+  
+  <text x="220" y="395" font-family="Arial" font-size="10" fill="#888">CS Active:</text>
+  <text x="350" y="395" font-family="Arial" font-size="10" fill="#00ff00">Low (PA4)</text>
+</svg>

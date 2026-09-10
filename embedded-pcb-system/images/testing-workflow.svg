@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="background:#1a1a2e">
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial" font-size="18" fill="#00ff00" text-anchor="middle" font-weight="bold">TESTING WORKFLOW</text>
+  
+  <!-- Start -->
+  <ellipse cx="100" cy="200" rx="60" ry="30" fill="#003300" stroke="#00ff00" stroke-width="2"/>
+  <text x="100" y="205" font-family="Arial" font-size="11" fill="#00ff00" text-anchor="middle">START</text>
+  
+  <!-- Decision: Hardware? -->
+  <polygon points="250,200 320,160 390,200 320,240" fill="#333300" stroke="#ffff00" stroke-width="2"/>
+  <text x="320" y="195" font-family="Arial" font-size="10" fill="#ffff00" text-anchor="middle">Hardware</text>
+  <text x="320" y="210" font-family="Arial" font-size="10" fill="#ffff00" text-anchor="middle">Available?</text>
+  
+  <line x1="160" y1="200" x2="190" y2="200" stroke="#00ff00" stroke-width="2"/>
+  
+  <!-- YES path -->
+  <line x1="390" y1="200" x2="450" y2="200" stroke="#00ff00" stroke-width="2"/>
+  <text x="420" y="190" font-family="Arial" font-size="9" fill="#00ff00">YES</text>
+  
+  <!-- NO path -->
+  <line x1="320" y1="240" x2="320" y2="320" stroke="#ff6600" stroke-width="2"/>
+  <text x="335" y="280" font-family="Arial" font-size="9" fill="#ff6600">NO</text>
+  
+  <!-- Hardware Test Box -->
+  <rect x="450" y="170" width="140" height="60" rx="5" fill="#003300" stroke="#00ff00" stroke-width="2"/>
+  <text x="520" y="195" font-family="Arial" font-size="10" fill="#00ff00" text-anchor="middle">HARDWARE TEST</text>
+  <text x="520" y="210" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">Flash via ST-Link</text>
+  <text x="520" y="222" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">Run test suite</text>
+  
+  <!-- Virtual Test Box -->
+  <rect x="240" y="300" width="160" height="70" rx="5" fill="#002244" stroke="#00aaff" stroke-width="2"/>
+  <text x="320" y="325" font-family="Arial" font-size="10" fill="#00aaff" text-anchor="middle">VIRTUAL TEST</text>
+  <text x="320" y="340" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">Option 1: C Simulation</text>
+  <text x="320" y="352" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">Option 2: Python Sim</text>
+  <text x="320" y="364" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">Option 3: Web Dashboard</text>
+  
+  <!-- Web Dashboard Box -->
+  <rect x="630" y="170" width="140" height="60" rx="5" fill="#330033" stroke="#ff00ff" stroke-width="2"/>
+  <text x="700" y="195" font-family="Arial" font-size="10" fill="#ff00ff" text-anchor="middle">WEB DASHBOARD</text>
+  <text x="700" y="210" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">Open HTML file</text>
+  <text x="700" y="222" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">Real-time charts</text>
+  
+  <line x1="590" y1="200" x2="630" y2="200" stroke="#ff00ff" stroke-width="2"/>
+  
+  <!-- Export Box -->
+  <rect x="630" y="280" width="140" height="60" rx="5" fill="#332200" stroke="#ffff00" stroke-width="2"/>
+  <text x="700" y="305" font-family="Arial" font-size="10" fill="#ffff00" text-anchor="middle">EXPORT DATA</text>
+  <text x="700" y="320" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">JSON format</text>
+  <text x="700" y="332" font-family="Arial" font-size="8" fill="#888" text-anchor="middle">CSV format</text>
+  
+  <line x1="700" y1="230" x2="700" y2="280" stroke="#ffff00" stroke-width="2"/>
+  
+  <!-- End -->
+  <ellipse cx="700" cy="370" rx="60" ry="20" fill="#330000" stroke="#ff0000" stroke-width="2"/>
+  <text x="700" y="375" font-family="Arial" font-size="10" fill="#ff0000" text-anchor="middle">END</text>
+  
+  <line x1="700" y1="340" x2="700" y2="350" stroke="#ff0000" stroke-width="2"/>
+  
+  <!-- Testing Options Box -->
+  <rect x="50" y="50" width="700" height="80" fill="#0d1117" stroke="#333" stroke-width="1"/>
+  <text x="400" y="70" font-family="Arial" font-size="12" fill="#888" text-anchor="middle" font-weight="bold">TESTING OPTIONS</text>
+  
+  <text x="80" y="90" font-family="Arial" font-size="9" fill="#00ff00">1. make flash</text>
+  <text x="80" y="105" font-family="Arial" font-size="9" fill="#888">Flash to real hardware</text>
+  
+  <text x="230" y="90" font-family="Arial" font-size="9" fill="#00aaff">2. make run</text>
+  <text x="230" y="105" font-family="Arial" font-size="9" fill="#888">C virtual simulation</text>
+  
+  <text x="380" y="90" font-family="Arial" font-size="9" fill="#ff6600">3. python sim</text>
+  <text x="380" y="105" font-family="Arial" font-size="9" fill="#888">Python simulator</text>
+  
+  <text x="530" y="90" font-family="Arial" font-size="9" fill="#ff00ff">4. HTML file</text>
+  <text x="530" y="105" font-family="Arial" font-size="9" fill="#888">Web dashboard</text>
+  
+  <text x="660" y="90" font-family="Arial" font-size="9" fill="#ffff00">5. endurance</text>
+  <text x="660" y="105" font-family="Arial" font-size="9" fill="#888">1000-cycle test</text>
+</svg>

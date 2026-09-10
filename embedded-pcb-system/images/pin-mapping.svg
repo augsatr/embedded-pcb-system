@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="background:#1a1a2e">
+  <!-- Title -->
+  <text x="400" y="30" font-family="Arial" font-size="18" fill="#00ff00" text-anchor="middle" font-weight="bold">STM32F103C8T6 PIN MAPPING</text>
+  
+  <!-- MCU Package -->
+  <rect x="250" y="60" width="300" height="300" rx="10" fill="#1a1a1a" stroke="#00ff00" stroke-width="2"/>
+  <text x="400" y="200" font-family="Arial" font-size="16" fill="#00ff00" text-anchor="middle">STM32F103</text>
+  <text x="400" y="220" font-family="Arial" font-size="12" fill="#888" text-anchor="middle">C8T6</text>
+  <text x="400" y="240" font-family="Arial" font-size="10" fill="#666" text-anchor="middle">LQFP-48</text>
+  
+  <!-- Pin 1 marker -->
+  <circle cx="270" cy="80" r="5" fill="#00ff00"/>
+  
+  <!-- Left Pins (1-12) -->
+  <g font-family="Arial" font-size="9">
+    <rect x="200" y="70" width="45" height="18" fill="#003333" stroke="#00ffff" stroke-width="1"/>
+    <text x="222" y="83" fill="#00ffff" text-anchor="middle">1 VDD</text>
+    
+    <rect x="200" y="93" width="45" height="18" fill="#330000" stroke="#ff0000" stroke-width="1"/>
+    <text x="222" y="106" fill="#ff0000" text-anchor="middle">2 VSS</text>
+    
+    <rect x="200" y="116" width="45" height="18" fill="#003333" stroke="#00ffff" stroke-width="1"/>
+    <text x="222" y="129" fill="#00ffff" text-anchor="middle">3 PB6</text>
+    <text x="222" y="139" fill="#888" text-anchor="middle" font-size="7">SCL</text>
+    
+    <rect x="200" y="139" width="45" height="18" fill="#003333" stroke="#00ffff" stroke-width="1"/>
+    <text x="222" y="152" fill="#00ffff" text-anchor="middle">4 PB7</text>
+    <text x="222" y="162" fill="#888" text-anchor="middle" font-size="7">SDA</text>
+    
+    <rect x="200" y="162" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="222" y="175" fill="#ffff00" text-anchor="middle">5 NRST</text>
+    
+    <rect x="200" y="185" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="222" y="198" fill="#ffff00" text-anchor="middle">6 PA0</text>
+    
+    <rect x="200" y="208" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="222" y="221" fill="#ffff00" text-anchor="middle">7 PA1</text>
+    
+    <rect x="200" y="231" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="222" y="244" fill="#ffff00" text-anchor="middle">8 PA2</text>
+    
+    <rect x="200" y="254" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="222" y="267" fill="#ffff00" text-anchor="middle">9 PA3</text>
+    
+    <rect x="200" y="277" width="45" height="18" fill="#332200" stroke="#ff6600" stroke-width="1"/>
+    <text x="222" y="290" fill="#ff6600" text-anchor="middle">10 PA4</text>
+    <text x="222" y="300" fill="#888" text-anchor="middle" font-size="7">NSS</text>
+    
+    <rect x="200" y="300" width="45" height="18" fill="#332200" stroke="#ff6600" stroke-width="1"/>
+    <text x="222" y="313" fill="#ff6600" text-anchor="middle">11 PA5</text>
+    <text x="222" y="323" fill="#888" text-anchor="middle" font-size="7">SCK</text>
+    
+    <rect x="200" y="323" width="45" height="18" fill="#332200" stroke="#ff6600" stroke-width="1"/>
+    <text x="222" y="336" fill="#ff6600" text-anchor="middle">12 PA6</text>
+    <text x="222" y="346" fill="#888" text-anchor="middle" font-size="7">MISO</text>
+  </g>
+  
+  <!-- Right Pins (37-48) -->
+  <g font-family="Arial" font-size="9">
+    <rect x="555" y="70" width="45" height="18" fill="#332200" stroke="#ff6600" stroke-width="1"/>
+    <text x="577" y="83" fill="#ff6600" text-anchor="middle">48 PA7</text>
+    <text x="577" y="93" fill="#888" text-anchor="middle" font-size="7">MOSI</text>
+    
+    <rect x="555" y="93" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="577" y="106" fill="#ffff00" text-anchor="middle">47 PA8</text>
+    
+    <rect x="555" y="116" width="45" height="18" fill="#330033" stroke="#ff00ff" stroke-width="1"/>
+    <text x="577" y="129" fill="#ff00ff" text-anchor="middle">46 PA9</text>
+    <text x="577" y="139" fill="#888" text-anchor="middle" font-size="7">TX</text>
+    
+    <rect x="555" y="139" width="45" height="18" fill="#330033" stroke="#ff00ff" stroke-width="1"/>
+    <text x="577" y="152" fill="#ff00ff" text-anchor="middle">45 PA10</text>
+    <text x="577" y="162" fill="#888" text-anchor="middle" font-size="7">RX</text>
+    
+    <rect x="555" y="162" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="577" y="175" fill="#ffff00" text-anchor="middle">44 PA11</text>
+    
+    <rect x="555" y="185" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="577" y="198" fill="#ffff00" text-anchor="middle">43 PA12</text>
+    
+    <rect x="555" y="208" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="577" y="221" fill="#ffff00" text-anchor="middle">42 PA13</text>
+    
+    <rect x="555" y="231" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="577" y="244" fill="#ffff00" text-anchor="middle">41 PA14</text>
+    
+    <rect x="555" y="254" width="45" height="18" fill="#333300" stroke="#ffff00" stroke-width="1"/>
+    <text x="577" y="267" fill="#ffff00" text-anchor="middle">40 PA15</text>
+    
+    <rect x="555" y="277" width="45" height="18" fill="#330000" stroke="#ff0000" stroke-width="1"/>
+    <text x="577" y="290" fill="#ff0000" text-anchor="middle">39 PB3</text>
+    
+    <rect x="555" y="300" width="45" height="18" fill="#330000" stroke="#ff0000" stroke-width="1"/>
+    <text x="577" y="313" fill="#ff0000" text-anchor="middle">38 PB4</text>
+    
+    <rect x="555" y="323" width="45" height="18" fill="#330000" stroke="#ff0000" stroke-width="1"/>
+    <text x="577" y="336" fill="#ff0000" text-anchor="middle">37 PB5</text>
+  </g>
+  
+  <!-- Legend -->
+  <rect x="100" y="380" width="600" height="110" fill="#0d1117" stroke="#333" stroke-width="1"/>
+  <text x="400" y="400" font-family="Arial" font-size="12" fill="#888" text-anchor="middle" font-weight="bold">Pin Color Legend</text>
+  
+  <rect x="120" y="415" width="20" height="12" fill="#003333" stroke="#00ffff"/>
+  <text x="145" y="425" font-family="Arial" font-size="10" fill="#00ffff">I2C (PB6/PB7)</text>
+  
+  <rect x="280" y="415" width="20" height="12" fill="#332200" stroke="#ff6600"/>
+  <text x="305" y="425" font-family="Arial" font-size="10" fill="#ff6600">SPI (PA4-PA7)</text>
+  
+  <rect x="440" y="415" width="20" height="12" fill="#330033" stroke="#ff00ff"/>
+  <text x="465" y="425" font-family="Arial" font-size="10" fill="#ff00ff">UART (PA9/PA10)</text>
+  
+  <rect x="120" y="445" width="20" height="12" fill="#003300" stroke="#00ff00"/>
+  <text x="145" y="455" font-family="Arial" font-size="10" fill="#00ff00">Power (VDD/VSS)</text>
+  
+  <rect x="280" y="445" width="20" height="12" fill="#333300" stroke="#ffff00"/>
+  <text x="305" y="455" font-family="Arial" font-size="10" fill="#ffff00">GPIO</text>
+  
+  <rect x="440" y="445" width="20" height="12" fill="#330000" stroke="#ff0000"/>
+  <text x="465" y="455" font-family="Arial" font-size="10" fill="#ff0000">Reserved/Other</text>
+  
+  <text x="400" y="480" font-family="Arial" font-size="9" fill="#666" text-anchor="middle">PC13: LED (Active Low) | BOOT0: Pull-down | NRST: Pull-up</text>
+</svg>
