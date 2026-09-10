@@ -15,6 +15,7 @@
 **Future roadmap (not built, pitch as slides only):** Buyer matching, logistics booking, payment escrow, dispute resolution.
 
 ## Data Source — VERIFIED
+<img width="1902" height="1002" alt="Screenshot 2026-09-11 011830" src="https://github.com/user-attachments/assets/7b7646f4-560d-41dc-bfd6-94b1bfd13e09" />
 
 - **API:** `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070`
 - **Source:** Ministry of Agriculture, data.gov.in
@@ -24,6 +25,7 @@
 - **Endpoint:** `GET /api/prices?commodity=Onion&state=Maharashtra`
 
 ## Impact Proof (Historical Backtest)
+<img width="1917" height="908" alt="Screenshot 2026-09-11 011843" src="https://github.com/user-attachments/assets/93f0d80b-9c6a-4f4a-98ae-d83d23830c9a" />
 
 | Season | Action | Net Gain/q | Verdict |
 |--------|--------|-----------|---------|
@@ -33,6 +35,7 @@
 | **Avg** | **Follow advisor** | **+₹161/q (+6.2%)** | **Mean** |
 
 ## FPO Pooling Pilot
+<img width="1820" height="1002" alt="Screenshot 2026-09-11 011746" src="https://github.com/user-attachments/assets/003cfaf6-ace7-4dd1-b451-cca3111058d6" />
 
 - **23 farmers, Solapur, Tur Dal**
 - Solo: ₹9,800/q → Pooled: ₹10,200/q → **+₹153/q each**
