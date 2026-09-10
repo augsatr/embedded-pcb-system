@@ -18,309 +18,424 @@
             text-align: center;
             border-bottom: 2px solid #00ff00;
         }
-        .header h1 {
-            font-size: 24px;
-            color: #00ff00;
-            text-shadow: 0 0 10px #00ff00;
-        }
+        .header h1 { font-size: 24px; color: #00ff00; text-shadow: 0 0 10px #00ff00; }
         .header p { color: #00aa00; margin-top: 5px; }
-        .status {
-            display: inline-block;
-            padding: 5px 15px;
-            background: #003300;
-            border: 1px solid #00ff00;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
+        .status { display: inline-block; padding: 5px 15px; background: #003300; border: 1px solid #00ff00; border-radius: 5px; margin-top: 10px; }
         .status.active { animation: blink 1s infinite; }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .container {
-            max-width: 1400px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 20px;
-        }
-        .card {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        .card h2 {
-            color: #00ffff;
-            font-size: 16px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #333;
-        }
-        .sensor-value {
-            font-size: 36px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .sensor-label {
-            font-size: 12px;
-            color: #888;
-        }
-        .value-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 8px 0;
-            padding: 8px;
-            background: #1a1a1a;
-            border-radius: 5px;
-        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .container { max-width: 1400px; margin: 20px auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .card { background: #111; border: 1px solid #333; border-radius: 10px; padding: 20px; }
+        .card h2 { color: #00ffff; font-size: 16px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #333; }
+        .sensor-value { font-size: 36px; font-weight: bold; margin: 10px 0; }
+        .value-row { display: flex; justify-content: space-between; margin: 8px 0; padding: 8px; background: #1a1a1a; border-radius: 5px; }
         .value-row .label { color: #888; }
         .value-row .value { color: #00ff00; font-weight: bold; }
-        .chart-container {
-            height: 150px;
-            background: #0a0a0a;
-            border: 1px solid #333;
-            border-radius: 5px;
-            margin-top: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-        .chart-canvas {
-            width: 100%;
-            height: 100%;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .stat-box {
-            background: #1a1a1a;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
+        .chart-container { height: 150px; background: #0a0a0a; border: 1px solid #333; border-radius: 5px; margin-top: 15px; overflow: hidden; }
+        .chart-canvas { width: 100%; height: 100%; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; }
+        .stat-box { background: #1a1a1a; padding: 10px; border-radius: 5px; text-align: center; }
         .stat-box .stat-label { font-size: 10px; color: #888; }
         .stat-box .stat-value { font-size: 14px; color: #00ff00; margin-top: 5px; }
-        .log-container {
-            grid-column: 1 / -1;
-        }
-        .log-box {
-            background: #0a0a0a;
-            border: 1px solid #333;
-            border-radius: 5px;
-            padding: 10px;
-            height: 200px;
-            overflow-y: auto;
-            font-size: 12px;
-        }
+        .log-container { grid-column: 1 / -1; }
+        .log-box { background: #0a0a0a; border: 1px solid #333; border-radius: 5px; padding: 10px; height: 200px; overflow-y: auto; font-size: 12px; }
         .log-entry { margin: 3px 0; }
         .log-time { color: #666; }
         .log-ok { color: #00ff00; }
         .log-warn { color: #ffff00; }
         .log-err { color: #ff0000; }
-        .btn {
-            background: #003300;
-            color: #00ff00;
-            border: 1px solid #00ff00;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-family: inherit;
-            margin: 5px;
-        }
+        .btn { background: #003300; color: #00ff00; border: 1px solid #00ff00; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-family: inherit; margin: 5px; }
         .btn:hover { background: #004400; }
         .btn.active { background: #00ff00; color: #000; }
-        .controls {
-            text-align: center;
-            margin: 20px 0;
-        }
+        .controls { text-align: center; margin: 20px 0; }
         .frequency { color: #ffff00; }
-        .ic {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
+        .ic { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 5px; }
         .ic.on { background: #00ff00; box-shadow: 0 0 10px #00ff00; }
         .ic.off { background: #ff0000; }
+        .tabs { display: flex; gap: 5px; margin-bottom: 15px; flex-wrap: wrap; }
+        .tab { background: #1a1a1a; color: #888; border: 1px solid #333; padding: 8px 16px; cursor: pointer; border-radius: 5px; font-family: inherit; font-size: 12px; }
+        .tab.active { background: #003300; color: #00ff00; border-color: #00ff00; }
+        .tab:hover { background: #002200; }
+        .hidden { display: none !important; }
+        .proto-box { background: #0a0a0a; border: 1px solid #333; border-radius: 5px; padding: 10px; height: 180px; overflow-y: auto; font-size: 11px; }
+        .proto-entry { margin: 2px 0; }
+        .proto-i2c { color: #00ffff; }
+        .proto-spi { color: #ff6600; }
+        .pin-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+        .pin { background: #1a1a1a; padding: 4px; text-align: center; border-radius: 3px; font-size: 9px; }
+        .pin.high { background: #003300; color: #00ff00; border: 1px solid #00ff00; }
+        .pin.low { background: #1a1a1a; color: #666; border: 1px solid #333; }
+        .pin.out { border: 1px solid #ffff00; }
+        .pin.in { border: 1px solid #00ffff; }
+        .reg-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        .reg-table th, .reg-table td { padding: 4px 8px; border: 1px solid #333; text-align: left; }
+        .reg-table th { background: #1a1a1a; color: #00ffff; }
+        .reg-table td { color: #00ff00; }
+        .slider-group { margin: 10px 0; }
+        .slider-group label { color: #888; font-size: 12px; }
+        .slider-group input[type="range"] { width: 100%; margin: 5px 0; }
+        .slider-group .slider-value { color: #00ff00; font-weight: bold; }
+        .alarm-box { padding: 8px; border-radius: 5px; margin: 5px 0; font-size: 12px; }
+        .alarm-ok { background: #002200; border: 1px solid #00ff00; color: #00ff00; }
+        .alarm-warn { background: #332200; border: 1px solid #ffff00; color: #ffff00; }
+        .alarm-err { background: #330000; border: 1px solid #ff0000; color: #ff0000; }
+        .csv-btn { background: #002244; color: #00aaff; border: 1px solid #00aaff; }
+        .csv-btn:hover { background: #003366; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>EMBEDDED PCB SYSTEM - VIRTUAL SENSOR DASHBOARD</h1>
-        <p>STM32F103C8T6 | BME280 (I2C) | LSM6DS3 (SPI)</p>
+        <p>STM32F103C8T6 | BME280 (I2C) | LSM6DS3 (SPI) | Virtual Testing Environment</p>
         <div class="status active">
-            <span class="ic on"></span> SIMULATION ACTIVE | <span id="uptime">00:00:00</span>
+            <span class="ic on"></span> SIMULATION ACTIVE | Uptime: <span id="uptime">00:00:00</span>
         </div>
     </div>
 
     <div class="container">
+        <!-- Main Controls -->
         <div class="controls">
             <button class="btn active" onclick="toggleSimulation()" id="btnToggle">STOP</button>
             <button class="btn" onclick="resetData()">RESET</button>
             <button class="btn" onclick="exportData()">EXPORT JSON</button>
-            <span style="margin-left: 20px;">Rate: <span class="frequency" id="rate">10</span> Hz | Samples: <span id="sampleCount">0</span></span>
+            <button class="btn csv-btn" onclick="exportCSV()">EXPORT CSV</button>
+            <span style="margin-left: 20px;">
+                Rate: <select id="rateSelect" onchange="changeRate()" style="background:#1a1a1a;color:#00ff00;border:1px solid #333;padding:4px;border-radius:3px;">
+                    <option value="100">10 Hz</option>
+                    <option value="50">20 Hz</option>
+                    <option value="200" selected>5 Hz</option>
+                    <option value="500">2 Hz</option>
+                    <option value="1000">1 Hz</option>
+                </select>
+                | Samples: <span id="sampleCount">0</span>
+            </span>
         </div>
 
-        <div class="grid">
-            <!-- BME280 Temperature -->
+        <!-- Tab Navigation -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('sensors')">SENSORS</button>
+            <button class="tab" onclick="showTab('protocol')">PROTOCOL ANALYZER</button>
+            <button class="tab" onclick="showTab('pins')">PIN STATES</button>
+            <button class="tab" onclick="showTab('registers')">REGISTER DUMP</button>
+            <button class="tab" onclick="showTab('alarms')">ALARMS</button>
+            <button class="tab" onclick="showTab('simconfig')">SIM CONFIG</button>
+            <button class="tab" onclick="showTab('system')">SYSTEM</button>
+        </div>
+
+        <!-- SENSORS TAB -->
+        <div id="tab-sensors" class="grid">
             <div class="card">
-                <h2><span class="ic on"></span> BME280 - Temperature (I2C)</h2>
+                <h2><span class="ic on"></span> BME280 - Temperature (I2C @ 0x76)</h2>
                 <div class="sensor-value" id="tempValue">25.00 C</div>
-                <div class="chart-container">
-                    <canvas class="chart-canvas" id="tempChart"></canvas>
-                </div>
+                <div class="chart-container"><canvas class="chart-canvas" id="tempChart"></canvas></div>
                 <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">AVG</div>
-                        <div class="stat-value" id="tempAvg">25.00 C</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">MIN</div>
-                        <div class="stat-value" id="tempMin">--</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">MAX</div>
-                        <div class="stat-value" id="tempMax">--</div>
-                    </div>
+                    <div class="stat-box"><div class="stat-label">AVG</div><div class="stat-value" id="tempAvg">--</div></div>
+                    <div class="stat-box"><div class="stat-label">MIN</div><div class="stat-value" id="tempMin">--</div></div>
+                    <div class="stat-box"><div class="stat-label">MAX</div><div class="stat-value" id="tempMax">--</div></div>
                 </div>
             </div>
-
-            <!-- BME280 Pressure -->
             <div class="card">
                 <h2><span class="ic on"></span> BME280 - Pressure (I2C)</h2>
                 <div class="sensor-value" id="presValue">101325.0 Pa</div>
-                <div class="chart-container">
-                    <canvas class="chart-canvas" id="presChart"></canvas>
-                </div>
+                <div class="chart-container"><canvas class="chart-canvas" id="presChart"></canvas></div>
                 <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">AVG</div>
-                        <div class="stat-value" id="presAvg">101325.0 Pa</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">MIN</div>
-                        <div class="stat-value" id="presMin">--</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">MAX</div>
-                        <div class="stat-value" id="presMax">--</div>
-                    </div>
+                    <div class="stat-box"><div class="stat-label">AVG</div><div class="stat-value" id="presAvg">--</div></div>
+                    <div class="stat-box"><div class="stat-label">MIN</div><div class="stat-value" id="presMin">--</div></div>
+                    <div class="stat-box"><div class="stat-label">MAX</div><div class="stat-value" id="presMax">--</div></div>
                 </div>
             </div>
-
-            <!-- BME280 Humidity -->
             <div class="card">
                 <h2><span class="ic on"></span> BME280 - Humidity (I2C)</h2>
                 <div class="sensor-value" id="humValue">45.0 %</div>
-                <div class="chart-container">
-                    <canvas class="chart-canvas" id="humChart"></canvas>
-                </div>
+                <div class="chart-container"><canvas class="chart-canvas" id="humChart"></canvas></div>
                 <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-label">AVG</div>
-                        <div class="stat-value" id="humAvg">45.0 %</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">MIN</div>
-                        <div class="stat-value" id="humMin">--</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">MAX</div>
-                        <div class="stat-value" id="humMax">--</div>
-                    </div>
+                    <div class="stat-box"><div class="stat-label">AVG</div><div class="stat-value" id="humAvg">--</div></div>
+                    <div class="stat-box"><div class="stat-label">MIN</div><div class="stat-value" id="humMin">--</div></div>
+                    <div class="stat-box"><div class="stat-label">MAX</div><div class="stat-value" id="humMax">--</div></div>
                 </div>
             </div>
-
-            <!-- LSM6DS3 Accelerometer -->
             <div class="card">
                 <h2><span class="ic on"></span> LSM6DS3 - Accelerometer (SPI)</h2>
-                <div class="value-row">
-                    <span class="label">X:</span>
-                    <span class="value" id="accelX">+204 mg</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">Y:</span>
-                    <span class="value" id="accelY">-102 mg</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">Z:</span>
-                    <span class="value" id="accelZ">+16384 mg</span>
-                </div>
-                <div class="chart-container">
-                    <canvas class="chart-canvas" id="accelChart"></canvas>
-                </div>
+                <div class="value-row"><span class="label">X:</span><span class="value" id="accelX">+204 mg</span></div>
+                <div class="value-row"><span class="label">Y:</span><span class="value" id="accelY">-102 mg</span></div>
+                <div class="value-row"><span class="label">Z:</span><span class="value" id="accelZ">+16384 mg</span></div>
+                <div class="chart-container"><canvas class="chart-canvas" id="accelChart"></canvas></div>
             </div>
-
-            <!-- LSM6DS3 Gyroscope -->
             <div class="card">
                 <h2><span class="ic on"></span> LSM6DS3 - Gyroscope (SPI)</h2>
-                <div class="value-row">
-                    <span class="label">X:</span>
-                    <span class="value" id="gyroX">+128 dps</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">Y:</span>
-                    <span class="value" id="gyroY">-64 dps</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">Z:</span>
-                    <span class="value" id="gyroZ">+32 dps</span>
-                </div>
-                <div class="chart-container">
-                    <canvas class="chart-canvas" id="gyroChart"></canvas>
-                </div>
+                <div class="value-row"><span class="label">X:</span><span class="value" id="gyroX">+128 dps</span></div>
+                <div class="value-row"><span class="label">Y:</span><span class="value" id="gyroY">-64 dps</span></div>
+                <div class="value-row"><span class="label">Z:</span><span class="value" id="gyroZ">+32 dps</span></div>
+                <div class="chart-container"><canvas class="chart-canvas" id="gyroChart"></canvas></div>
             </div>
-
-            <!-- System Info -->
             <div class="card">
-                <h2><span class="ic on"></span> System Information</h2>
-                <div class="value-row">
-                    <span class="label">MCU:</span>
-                    <span class="value">STM32F103C8T6</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">Clock:</span>
-                    <span class="value">72 MHz</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">I2C Bus:</span>
-                    <span class="value">100 kHz</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">SPI Bus:</span>
-                    <span class="value">4.5 MHz</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">VCC:</span>
-                    <span class="value">3.3V</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">BME280 Addr:</span>
-                    <span class="value">0x76</span>
-                </div>
-                <div class="value-row">
-                    <span class="label">LSM6DS3 ID:</span>
-                    <span class="value">0x69</span>
+                <h2><span class="ic on"></span> Derived Values</h2>
+                <div class="value-row"><span class="label">Altitude:</span><span class="value" id="altitude">-- m</span></div>
+                <div class="value-row"><span class="label">Pitch:</span><span class="value" id="pitch">-- deg</span></div>
+                <div class="value-row"><span class="label">Roll:</span><span class="value" id="roll">-- deg</span></div>
+                <div class="value-row"><span class="label">Yaw:</span><span class="value" id="yaw">-- deg</span></div>
+                <div class="value-row"><span class="label">Accel Magnitude:</span><span class="value" id="accelMag">-- g</span></div>
+                <div class="value-row"><span class="label">Dew Point:</span><span class="value" id="dewPoint">-- C</span></div>
+            </div>
+        </div>
+
+        <!-- PROTOCOL ANALYZER TAB -->
+        <div id="tab-protocol" class="grid hidden">
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> Protocol Analyzer - I2C Traffic</h2>
+                <div class="proto-box" id="i2cLog">
+                    <div class="proto-entry proto-i2c">[INIT] I2C1 initialized at 100kHz</div>
                 </div>
             </div>
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> Protocol Analyzer - SPI Traffic</h2>
+                <div class="proto-box" id="spiLog">
+                    <div class="proto-entry proto-spi">[INIT] SPI1 initialized: Mode 0, Prescaler 16</div>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> I2C Statistics</h2>
+                <div class="value-row"><span class="label">Total Transactions:</span><span class="value" id="i2cTxCount">0</span></div>
+                <div class="value-row"><span class="label">Bytes Sent:</span><span class="value" id="i2cBytesSent">0</span></div>
+                <div class="value-row"><span class="label">Bytes Received:</span><span class="value" id="i2cBytesRecv">0</span></div>
+                <div class="value-row"><span class="label">NACK Errors:</span><span class="value" id="i2cNackErr">0</span></div>
+                <div class="value-row"><span class="label">Bus Speed:</span><span class="value">100 kHz</span></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> SPI Statistics</h2>
+                <div class="value-row"><span class="label">Total Transfers:</span><span class="value" id="spiTxCount">0</span></div>
+                <div class="value-row"><span class="label">Bytes Transferred:</span><span class="value" id="spiBytesTx">0</span></div>
+                <div class="value-row"><span class="label">CS Toggles:</span><span class="value" id="spiCsToggles">0</span></div>
+                <div class="value-row"><span class="label">Bus Speed:</span><span class="value">4.5 MHz</span></div>
+            </div>
+        </div>
 
-            <!-- Log -->
+        <!-- PIN STATES TAB -->
+        <div id="tab-pins" class="grid hidden">
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> GPIO Pin States - STM32F103C8T6</h2>
+                <p style="color:#888;font-size:11px;margin-bottom:10px;">Green = HIGH | Gray = LOW | Yellow border = Output | Cyan border = Input</p>
+                <div style="margin-bottom:10px;"><strong style="color:#00ffff;">PORT A:</strong></div>
+                <div class="pin-grid" id="portAGrid"></div>
+                <div style="margin:10px 0;"><strong style="color:#00ffff;">PORT B:</strong></div>
+                <div class="pin-grid" id="portBGrid"></div>
+                <div style="margin:10px 0;"><strong style="color:#00ffff;">PORT C:</strong></div>
+                <div class="pin-grid" id="portCGrid"></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> Pin Configuration</h2>
+                <div class="value-row"><span class="label">PA4 (NSS):</span><span class="value" style="color:#ffff00;">OUTPUT Push-Pull</span></div>
+                <div class="value-row"><span class="label">PA5 (SCK):</span><span class="value" style="color:#ffff00;">AF Push-Pull</span></div>
+                <div class="value-row"><span class="label">PA6 (MISO):</span><span class="value" style="color:#00ffff;">Input Floating</span></div>
+                <div class="value-row"><span class="label">PA7 (MOSI):</span><span class="value" style="color:#ffff00;">AF Push-Pull</span></div>
+                <div class="value-row"><span class="label">PA9 (TX):</span><span class="value" style="color:#ffff00;">AF Push-Pull</span></div>
+                <div class="value-row"><span class="label">PA10 (RX):</span><span class="value" style="color:#00ffff;">Input Floating</span></div>
+                <div class="value-row"><span class="label">PB6 (SCL):</span><span class="value" style="color:#ffff00;">AF Open-Drain</span></div>
+                <div class="value-row"><span class="label">PB7 (SDA):</span><span class="value" style="color:#ffff00;">AF Open-Drain</span></div>
+                <div class="value-row"><span class="label">PC13 (LED):</span><span class="value" style="color:#ffff00;">OUTPUT Push-Pull</span></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> External Headers</h2>
+                <div class="value-row"><span class="label">J1 Pin 1:</span><span class="value">VCC (3.3V)</span></div>
+                <div class="value-row"><span class="label">J1 Pin 2:</span><span class="value">GND</span></div>
+                <div class="value-row"><span class="label">J1 Pin 3:</span><span class="value">SCL (PB6)</span></div>
+                <div class="value-row"><span class="label">J1 Pin 4:</span><span class="value">SDA (PB7)</span></div>
+                <div class="value-row"><span class="label">J1 Pin 5:</span><span class="value">NRST</span></div>
+                <div class="value-row"><span class="label">J1 Pin 6:</span><span class="value">BOOT0</span></div>
+                <div class="value-row"><span class="label">J2 Pin 1:</span><span class="value">VCC (3.3V)</span></div>
+                <div class="value-row"><span class="label">J2 Pin 2:</span><span class="value">GND</span></div>
+                <div class="value-row"><span class="label">J2 Pin 3-8:</span><span class="value">SCK,MISO,MOSI,NSS,INT1,INT2</span></div>
+            </div>
+        </div>
+
+        <!-- REGISTER DUMP TAB -->
+        <div id="tab-registers" class="grid hidden">
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> BME280 Register Dump</h2>
+                <table class="reg-table">
+                    <tr><th>Addr</th><th>Name</th><th>Value</th><th>Description</th></tr>
+                    <tr><td>0xD0</td><td>CHIP_ID</td><td id="regBmeId">0x60</td><td>BME280 Chip ID</td></tr>
+                    <tr><td>0xF2</td><td>CTRL_HUM</td><td id="regBmeHum">0x01</td><td>Humidity oversampling x1</td></tr>
+                    <tr><td>0xF4</td><td>CTRL_MEAS</td><td id="regBmeMeas">0xB7</td><td>Temp x2, Press x16, Normal mode</td></tr>
+                    <tr><td>0xF5</td><td>CONFIG</td><td id="regBmeCfg">0xA0</td><td>Standby 500ms, Filter off</td></tr>
+                    <tr><td>0xF7</td><td>PRESS_MSB</td><td id="regBmePmsb">0x--</td><td>Pressure MSB</td></tr>
+                    <tr><td>0xFA</td><td>TEMP_MSB</td><td id="regBmeTmsb">0x--</td><td>Temperature MSB</td></tr>
+                    <tr><td>0xFD</td><td>HUM_MSB</td><td id="regBmeHmsb">0x--</td><td>Humidity MSB</td></tr>
+                </table>
+            </div>
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> LSM6DS3 Register Dump</h2>
+                <table class="reg-table">
+                    <tr><th>Addr</th><th>Name</th><th>Value</th><th>Description</th></tr>
+                    <tr><td>0x0F</td><td>WHO_AM_I</td><td id="regLsmId">0x69</td><td>LSM6DS3 ID</td></tr>
+                    <tr><td>0x10</td><td>CTRL1_XL</td><td id="regLsmXl">0x30</td><td>Accel 119Hz, +/-2g</td></tr>
+                    <tr><td>0x11</td><td>CTRL2_G</td><td id="regLsmG">0x30</td><td>Gyro 119Hz, 245dps</td></tr>
+                    <tr><td>0x12</td><td>CTRL3_C</td><td id="regLsmC3">0x44</td><td>Auto-increment, SPI enable</td></tr>
+                    <tr><td>0x22</td><td>OUTX_L_G</td><td id="regLsmGxl">0x--</td><td>Gyro X low byte</td></tr>
+                    <tr><td>0x28</td><td>OUTX_L_XL</td><td id="regLsmAxl">0x--</td><td>Accel X low byte</td></tr>
+                </table>
+            </div>
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> STM32 Register Dump</h2>
+                <table class="reg-table">
+                    <tr><th>Peripheral</th><th>Register</th><th>Value</th><th>Status</th></tr>
+                    <tr><td>RCC</td><td>APB2ENR</td><td>0x0000080D</td><td>IOPA,B,C + SPI1 enabled</td></tr>
+                    <tr><td>RCC</td><td>APB1ENR</td><td>0x00800000</td><td>I2C1 enabled</td></tr>
+                    <tr><td>I2C1</td><td>CR1</td><td>0x00000001</td><td>Peripheral enabled</td></tr>
+                    <tr><td>I2C1</td><td>CR2</td><td>0x00000024</td><td>FREQ = 36MHz</td></tr>
+                    <tr><td>I2C1</td><td>CCR</td><td>0x0000012C</td><td>CCR = 300 (100kHz)</td></tr>
+                    <tr><td>SPI1</td><td>CR1</td><td<0x00000044</td><td>SPE + MSTR enabled</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ALARMS TAB -->
+        <div id="tab-alarms" class="grid hidden">
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> Alarm Configuration</h2>
+                <div class="slider-group">
+                    <label>Temperature High Threshold: <span class="slider-value" id="tempHighVal">30.0 C</span></label>
+                    <input type="range" min="0" max="80" step="0.5" value="30" id="tempHigh" oninput="updateThresholds()">
+                </div>
+                <div class="slider-group">
+                    <label>Temperature Low Threshold: <span class="slider-value" id="tempLowVal">15.0 C</span></label>
+                    <input type="range" min="-40" max="30" step="0.5" value="15" id="tempLow" oninput="updateThresholds()">
+                </div>
+                <div class="slider-group">
+                    <label>Humidity High Threshold: <span class="slider-value" id="humHighVal">80.0 %</span></label>
+                    <input type="range" min="0" max="100" step="1" value="80" id="humHigh" oninput="updateThresholds()">
+                </div>
+                <div class="slider-group">
+                    <label>Humidity Low Threshold: <span class="slider-value" id="humLowVal">20.0 %</span></label>
+                    <input type="range" min="0" max="100" step="1" value="20" id="humLow" oninput="updateThresholds()">
+                </div>
+                <div class="slider-group">
+                    <label>Pressure Deviation Alert: <span class="slider-value" id="presDevVal">50.0 Pa</span></label>
+                    <input type="range" min="10" max="200" step="5" value="50" id="presDev" oninput="updateThresholds()">
+                </div>
+            </div>
+            <div class="card" style="grid-column: 1 / -1;">
+                <h2><span class="ic on"></span> Active Alarms</h2>
+                <div id="alarmList">
+                    <div class="alarm-box alarm-ok">ALL SYSTEMS NORMAL</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIM CONFIG TAB -->
+        <div id="tab-simconfig" class="grid hidden">
+            <div class="card">
+                <h2><span class="ic on"></span> Simulation Mode</h2>
+                <div class="value-row"><span class="label">Current Mode:</span><span class="value" id="simMode">NORMAL</span></div>
+                <div style="margin-top:15px;">
+                    <button class="btn" onclick="setSimMode('normal')">NORMAL</button>
+                    <button class="btn" onclick="setSimMode('stress')">STRESS TEST</button>
+                    <button class="btn" onclick="setSimMode('fault')">FAULT INJECT</button>
+                    <button class="btn" onclick="setSimMode('drift')">SENSOR DRIFT</button>
+                    <button class="btn" onclick="setSimMode('random')">RANDOM WALK</button>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> Base Values</h2>
+                <div class="slider-group">
+                    <label>Base Temperature: <span class="slider-value" id="baseTempVal">25.0 C</span></label>
+                    <input type="range" min="-20" max="60" step="0.5" value="25" id="baseTemp" oninput="updateBaseValues()">
+                </div>
+                <div class="slider-group">
+                    <label>Base Pressure: <span class="slider-value" id="basePresVal">101325 Pa</span></label>
+                    <input type="range" min="95000" max="105000" step="50" value="101325" id="basePres" oninput="updateBaseValues()">
+                </div>
+                <div class="slider-group">
+                    <label>Base Humidity: <span class="slider-value" id="baseHumVal">45.0 %</span></label>
+                    <input type="range" min="0" max="100" step="1" value="45" id="baseHum" oninput="updateBaseValues()">
+                </div>
+                <div class="slider-group">
+                    <label>Noise Level: <span class="slider-value" id="noiseLevelVal">1.0x</span></label>
+                    <input type="range" min="0" max="5" step="0.1" value="1" id="noiseLevel" oninput="updateBaseValues()">
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> Fault Injection</h2>
+                <div style="margin-top:10px;">
+                    <label><input type="checkbox" id="faultNack" onchange="toggleFault()"> I2C NACK Error</label><br>
+                    <label><input type="checkbox" id="faultTimeout" onchange="toggleFault()"> SPI Timeout</label><br>
+                    <label><input type="checkbox" id="faultCrc" onchange="toggleFault()"> CRC Error</label><br>
+                    <label><input type="checkbox" id="faultOverrun" onchange="toggleFault()"> Data Overrun</label><br>
+                    <label><input type="checkbox" id="faultStuck" onchange="toggleFault()"> Stuck Bus</label>
+                </div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> Data Recording</h2>
+                <div class="value-row"><span class="label">Recording:</span><span class="value" id="recStatus">STOPPED</span></div>
+                <div class="value-row"><span class="label">Duration:</span><span class="value" id="recDuration">0s</span></div>
+                <div class="value-row"><span class="label">File Size:</span><span class="value" id="recSize">0 KB</span></div>
+                <div style="margin-top:15px;">
+                    <button class="btn" onclick="startRecording()" id="btnRec">START RECORDING</button>
+                    <button class="btn csv-btn" onclick="exportCSV()">EXPORT CSV</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SYSTEM TAB -->
+        <div id="tab-system" class="grid hidden">
+            <div class="card">
+                <h2><span class="ic on"></span> MCU: STM32F103C8T6</h2>
+                <div class="value-row"><span class="label">Core:</span><span class="value">ARM Cortex-M3</span></div>
+                <div class="value-row"><span class="label">Clock:</span><span class="value">72 MHz (HSE + PLL)</span></div>
+                <div class="value-row"><span class="label">Flash:</span><span class="value">64 KB</span></div>
+                <div class="value-row"><span class="label">SRAM:</span><span class="value">20 KB</span></div>
+                <div class="value-row"><span class="label">Package:</span><span class="value">LQFP-48 (7x7mm)</span></div>
+                <div class="value-row"><span class="label">VDD:</span><span class="value">3.3V</span></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> BME280 Sensor</h2>
+                <div class="value-row"><span class="label">Manufacturer:</span><span class="value">Bosch</span></div>
+                <div class="value-row"><span class="label">Interface:</span><span class="value">I2C (0x76)</span></div>
+                <div class="value-row"><span class="label">Temp Range:</span><span class="value">-40 to +85 C</span></div>
+                <div class="value-row"><span class="label">Temp Accuracy:</span><span class="value">+/- 1.0 C</span></div>
+                <div class="value-row"><span class="label">Press Range:</span><span class="value">300-1100 hPa</span></div>
+                <div class="value-row"><span class="label">Hum Range:</span><span class="value">0-100 %</span></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> LSM6DS3 Sensor</h2>
+                <div class="value-row"><span class="label">Manufacturer:</span><span class="value">STMicro</span></div>
+                <div class="value-row"><span class="label">Interface:</span><span class="value">SPI (Mode 0)</span></div>
+                <div class="value-row"><span class="label">Accel Range:</span><span class="value">+/-2/4/8/16g</span></div>
+                <div class="value-row"><span class="label">Gyro Range:</span><span class="value">+/-245/500/1000/2000 dps</span></div>
+                <div class="value-row"><span class="label">WHO_AM_I:</span><span class="value">0x69</span></div>
+                <div class="value-row"><span class="label">Package:</span><span class="value">LGA-12 (2.5x3mm)</span></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> Power Supply</h2>
+                <div class="value-row"><span class="label">Regulator:</span><span class="value">LM1117-3.3</span></div>
+                <div class="value-row"><span class="label">Input:</span><span class="value">5V USB</span></div>
+                <div class="value-row"><span class="label">Output:</span><span class="value">3.3V @ 800mA</span></div>
+                <div class="value-row"><span class="label">Decoupling:</span><span class="value">10uF + 100nF</span></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> PCB Specifications</h2>
+                <div class="value-row"><span class="label">Size:</span><span class="value">160mm x 120mm</span></div>
+                <div class="value-row"><span class="label">Layers:</span><span class="value">2 (F.Cu, B.Cu)</span></div>
+                <div class="value-row"><span class="label">Track Width:</span><span class="value">0.25mm signal, 0.5mm power</span></div>
+                <div class="value-row"><span class="label">Via Size:</span><span class="value">0.6mm dia, 0.3mm drill</span></div>
+                <div class="value-row"><span class="label">Clearance:</span><span class="value">0.2mm</span></div>
+                <div class="value-row"><span class="label">Copper Weight:</span><span class="value">1 oz</span></div>
+            </div>
+            <div class="card">
+                <h2><span class="ic on"></span> Firmware Build</h2>
+                <div class="value-row"><span class="label">Toolchain:</span><span class="value">arm-none-eabi-gcc</span></div>
+                <div class="value-row"><span class="label">Optimization:</span><span class="value">-Os</span></div>
+                <div class="value-row"><span class="label">Flash Tool:</span><span class="value">ST-Link V2</span></div>
+                <div class="value-row"><span class="label">Debugger:</span><span class="value">GDB + OpenOCD</span></div>
+            </div>
+        </div>
+
+        <!-- Log (always visible) -->
+        <div class="grid" style="margin-top:20px;">
             <div class="card log-container">
                 <h2><span class="ic on"></span> System Log</h2>
                 <div class="log-box" id="logBox">
                     <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">System initialized</span></div>
-                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">I2C1 initialized at 100kHz</span></div>
-                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">SPI1 initialized: Mode 0, Prescaler 16</span></div>
-                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">BME280 detected at 0x76</span></div>
-                    <div class="log-entry"><span class="log-time">[00:00:00]</span> <span class="log-ok">LSM6DS3 detected: WHO_AM_I = 0x69</span></div>
-                    <div class="log-entry"><span class="log-time">[00:00:01]</span> <span class="log-ok">Virtual simulation started</span></div>
                 </div>
             </div>
         </div>
@@ -330,148 +445,177 @@
         let running = true;
         let sampleCount = 0;
         let startTime = Date.now();
+        let updateInterval = 200;
+        let intervalId = null;
+
         let tempData = [], presData = [], humData = [];
         let accelXData = [], accelYData = [], accelZData = [];
         let gyroXData = [], gyroYData = [], gyroZData = [];
         const maxDataPoints = 60;
 
+        let baseTemp = 25.0, basePres = 101325.0, baseHum = 45.0, noiseLevel = 1.0;
+        let simMode = 'normal';
+        let i2cTxCount = 0, i2cBytesSent = 0, i2cBytesRecv = 0, i2cNackErr = 0;
+        let spiTxCount = 0, spiBytesTx = 0, spiCsToggles = 0;
+        let recording = false, recStartTime = 0, recordedData = [];
+
+        let tempHigh = 30, tempLow = 15, humHigh = 80, humLow = 20, presDev = 50;
+
         function simulateTemperature() {
-            const base = 25.0;
-            const noise = (Math.random() - 0.5) * 1.0;
-            const drift = Math.sin(Date.now() / 10000) * 0.5;
+            let base = baseTemp;
+            let noise = (Math.random() - 0.5) * 2.0 * noiseLevel;
+            let drift = Math.sin(Date.now() / 10000) * 0.5;
+            if (simMode === 'stress') { noise *= 5; drift *= 3; }
+            else if (simMode === 'fault') { if (Math.random() < 0.05) return 999; }
+            else if (simMode === 'drift') { drift = (Date.now() - startTime) / 10000; }
+            else if (simMode === 'random') { base += (Math.random() - 0.5) * 10; }
             return base + noise + drift;
         }
 
         function simulatePressure() {
-            return 101325.0 + (Math.random() - 0.5) * 2.0;
+            let noise = (Math.random() - 0.5) * 2.0 * noiseLevel;
+            if (simMode === 'stress') noise *= 5;
+            return basePres + noise;
         }
 
         function simulateHumidity() {
-            const base = 45.0;
-            const noise = (Math.random() - 0.5) * 0.5;
-            const drift = Math.sin(Date.now() / 15000) * 2.0;
-            return Math.max(0, Math.min(100, base + noise + drift));
+            let noise = (Math.random() - 0.5) * 0.5 * noiseLevel;
+            let drift = Math.sin(Date.now() / 15000) * 2.0;
+            if (simMode === 'stress') { noise *= 5; drift *= 3; }
+            return Math.max(0, Math.min(100, baseHum + noise + drift));
         }
 
         function simulateAccel() {
+            let n = noiseLevel;
+            if (simMode === 'stress') n *= 5;
             return [
-                204 + Math.floor((Math.random() - 0.5) * 20),
-                -102 + Math.floor((Math.random() - 0.5) * 20),
-                16384 + Math.floor((Math.random() - 0.5) * 100)
+                204 + Math.floor((Math.random() - 0.5) * 20 * n),
+                -102 + Math.floor((Math.random() - 0.5) * 20 * n),
+                16384 + Math.floor((Math.random() - 0.5) * 100 * n)
             ];
         }
 
         function simulateGyro() {
+            let n = noiseLevel;
+            if (simMode === 'stress') n *= 5;
             return [
-                128 + Math.floor((Math.random() - 0.5) * 40),
-                -64 + Math.floor((Math.random() - 0.5) * 40),
-                32 + Math.floor((Math.random() - 0.5) * 40)
+                128 + Math.floor((Math.random() - 0.5) * 40 * n),
+                -64 + Math.floor((Math.random() - 0.5) * 40 * n),
+                32 + Math.floor((Math.random() - 0.5) * 40 * n)
             ];
         }
 
-        function drawChart(canvasId, data, color, min, max) {
+        function drawChart(canvasId, data, color) {
             const canvas = document.getElementById(canvasId);
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
             const w = canvas.width = canvas.offsetWidth;
             const h = canvas.height = canvas.offsetHeight;
-
             ctx.fillStyle = '#0a0a0a';
             ctx.fillRect(0, 0, w, h);
-
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = 1;
-            for (let i = 0; i <= 4; i++) {
-                const y = (h / 4) * i;
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(w, y);
-                ctx.stroke();
-            }
-
+            ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
+            for (let i = 0; i <= 4; i++) { const y = (h / 4) * i; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
             if (data.length < 2) return;
-
-            const dataMin = Math.min(...data);
-            const dataMax = Math.max(...data);
-            const range = dataMax - dataMin || 1;
-
-            ctx.strokeStyle = color;
-            ctx.lineWidth = 2;
-            ctx.beginPath();
+            const dataMin = Math.min(...data), dataMax = Math.max(...data), range = dataMax - dataMin || 1;
+            ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
             for (let i = 0; i < data.length; i++) {
                 const x = (w / (maxDataPoints - 1)) * i;
                 const y = h - ((data[i] - dataMin) / range) * (h - 20) - 10;
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
+                if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
             }
             ctx.stroke();
-
-            ctx.fillStyle = color;
-            ctx.shadowColor = color;
-            ctx.shadowBlur = 10;
+            ctx.fillStyle = color; ctx.shadowColor = color; ctx.shadowBlur = 10;
             const lastX = (w / (maxDataPoints - 1)) * (data.length - 1);
             const lastY = h - ((data[data.length - 1] - dataMin) / range) * (h - 20) - 10;
-            ctx.beginPath();
-            ctx.arc(lastX, lastY, 4, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.shadowBlur = 0;
+            ctx.beginPath(); ctx.arc(lastX, lastY, 4, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+        }
+
+        function calcStats(data, unit) {
+            if (data.length === 0) return { avg: '--', min: '--', max: '--' };
+            const avg = data.reduce((a, b) => a + b, 0) / data.length;
+            return { avg: avg.toFixed(2) + ' ' + unit, min: Math.min(...data).toFixed(2) + ' ' + unit, max: Math.max(...data).toFixed(2) + ' ' + unit };
         }
 
         function updateStats() {
-            const calcStats = (data, unit) => {
-                if (data.length === 0) return { avg: '--', min: '--', max: '--' };
-                const avg = data.reduce((a, b) => a + b, 0) / data.length;
-                const min = Math.min(...data);
-                const max = Math.max(...data);
-                return {
-                    avg: avg.toFixed(2) + ' ' + unit,
-                    min: min.toFixed(2) + ' ' + unit,
-                    max: max.toFixed(2) + ' ' + unit
-                };
-            };
+            let s;
+            s = calcStats(tempData, 'C'); document.getElementById('tempAvg').textContent = s.avg; document.getElementById('tempMin').textContent = s.min; document.getElementById('tempMax').textContent = s.max;
+            s = calcStats(presData, 'Pa'); document.getElementById('presAvg').textContent = s.avg; document.getElementById('presMin').textContent = s.min; document.getElementById('presMax').textContent = s.max;
+            s = calcStats(humData, '%'); document.getElementById('humAvg').textContent = s.avg; document.getElementById('humMin').textContent = s.min; document.getElementById('humMax').textContent = s.max;
+        }
 
-            const tempStats = calcStats(tempData, 'C');
-            document.getElementById('tempAvg').textContent = tempStats.avg;
-            document.getElementById('tempMin').textContent = tempStats.min;
-            document.getElementById('tempMax').textContent = tempStats.max;
+        function addI2cLog(msg) {
+            const box = document.getElementById('i2cLog');
+            const entry = document.createElement('div');
+            entry.className = 'proto-entry proto-i2c';
+            entry.textContent = msg;
+            box.appendChild(entry);
+            box.scrollTop = box.scrollHeight;
+            if (box.children.length > 50) box.removeChild(box.firstChild);
+        }
 
-            const presStats = calcStats(presData, 'Pa');
-            document.getElementById('presAvg').textContent = presStats.avg;
-            document.getElementById('presMin').textContent = presStats.min;
-            document.getElementById('presMax').textContent = presStats.max;
+        function addSpiLog(msg) {
+            const box = document.getElementById('spiLog');
+            const entry = document.createElement('div');
+            entry.className = 'proto-entry proto-spi';
+            entry.textContent = msg;
+            box.appendChild(entry);
+            box.scrollTop = box.scrollHeight;
+            if (box.children.length > 50) box.removeChild(box.firstChild);
+        }
 
-            const humStats = calcStats(humData, '%');
-            document.getElementById('humAvg').textContent = humStats.avg;
-            document.getElementById('humMin').textContent = humStats.min;
-            document.getElementById('humMax').textContent = humStats.max;
+        function updatePins() {
+            const pa = [0,0,0,0,1,1,0,1,0,1,1,0,0,0,0,0];
+            const pb = [0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0];
+            const pc = [0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0];
+            ['portAGrid','portBGrid','portCGrid'].forEach((id, pi) => {
+                const pins = [pa,pb,pc][pi];
+                const grid = document.getElementById(id);
+                grid.innerHTML = '';
+                for (let i = 0; i < 16; i++) {
+                    const pin = document.createElement('div');
+                    const isOutput = (i === 4 || i === 5 || i === 7 || i === 9 || i === 13);
+                    pin.className = 'pin ' + (pins[i] ? 'high' : 'low') + ' ' + (isOutput ? 'out' : 'in');
+                    pin.textContent = 'P' + 'ABC'[pi] + i + ':' + (pins[i] ? 'H' : 'L');
+                    grid.appendChild(pin);
+                }
+            });
+        }
+
+        function checkAlarms() {
+            const list = document.getElementById('alarmList');
+            list.innerHTML = '';
+            let alarms = [];
+            if (tempData.length > 0) {
+                const lastTemp = tempData[tempData.length - 1];
+                if (lastTemp > tempHigh) alarms.push({ msg: 'TEMP HIGH: ' + lastTemp.toFixed(1) + 'C > ' + tempHigh + 'C', type: 'err' });
+                if (lastTemp < tempLow) alarms.push({ msg: 'TEMP LOW: ' + lastTemp.toFixed(1) + 'C < ' + tempLow + 'C', type: 'warn' });
+            }
+            if (humData.length > 0) {
+                const lastHum = humData[humData.length - 1];
+                if (lastHum > humHigh) alarms.push({ msg: 'HUMIDITY HIGH: ' + lastHum.toFixed(1) + '% > ' + humHigh + '%', type: 'err' });
+                if (lastHum < humLow) alarms.push({ msg: 'HUMIDITY LOW: ' + lastHum.toFixed(1) + '% < ' + humLow + '%', type: 'warn' });
+            }
+            if (alarms.length === 0) {
+                list.innerHTML = '<div class="alarm-box alarm-ok">ALL SYSTEMS NORMAL</div>';
+            } else {
+                alarms.forEach(a => {
+                    const div = document.createElement('div');
+                    div.className = 'alarm-box alarm-' + a.type;
+                    div.textContent = a.msg;
+                    list.appendChild(div);
+                });
+            }
         }
 
         function updateData() {
             if (!running) return;
-
             sampleCount++;
-
-            const temp = simulateTemperature();
-            const pres = simulatePressure();
-            const hum = simulateHumidity();
-            const accel = simulateAccel();
-            const gyro = simulateGyro();
-
-            tempData.push(temp);
-            presData.push(pres);
-            humData.push(hum);
-            accelXData.push(accel[0]);
-            accelYData.push(accel[1]);
-            accelZData.push(accel[2]);
-            gyroXData.push(gyro[0]);
-            gyroYData.push(gyro[1]);
-            gyroZData.push(gyro[2]);
-
-            if (tempData.length > maxDataPoints) tempData.shift();
-            if (presData.length > maxDataPoints) presData.shift();
-            if (humData.length > maxDataPoints) humData.shift();
-            if (accelXData.length > maxDataPoints) { accelXData.shift(); accelYData.shift(); accelZData.shift(); }
-            if (gyroXData.length > maxDataPoints) { gyroXData.shift(); gyroYData.shift(); gyroZData.shift(); }
+            const temp = simulateTemperature(), pres = simulatePressure(), hum = simulateHumidity();
+            const accel = simulateAccel(), gyro = simulateGyro();
+            tempData.push(temp); presData.push(pres); humData.push(hum);
+            accelXData.push(accel[0]); accelYData.push(accel[1]); accelZData.push(accel[2]);
+            gyroXData.push(gyro[0]); gyroYData.push(gyro[1]); gyroZData.push(gyro[2]);
+            if (tempData.length > maxDataPoints) { tempData.shift(); presData.shift(); humData.shift(); accelXData.shift(); accelYData.shift(); accelZData.shift(); gyroXData.shift(); gyroYData.shift(); gyroZData.shift(); }
 
             document.getElementById('tempValue').textContent = temp.toFixed(2) + ' C';
             document.getElementById('presValue').textContent = pres.toFixed(1) + ' Pa';
@@ -484,24 +628,46 @@
             document.getElementById('gyroZ').textContent = (gyro[2] >= 0 ? '+' : '') + gyro[2] + ' dps';
             document.getElementById('sampleCount').textContent = sampleCount;
 
+            const alt = 44330 * (1 - Math.pow(pres / 101325, 0.1903));
+            document.getElementById('altitude').textContent = alt.toFixed(1) + ' m';
+            document.getElementById('pitch').textContent = (Math.atan2(accel[1], Math.sqrt(accel[0]*accel[0]+accel[2]*accel[2]))*180/Math.PI).toFixed(1) + ' deg';
+            document.getElementById('roll').textContent = (Math.atan2(-accel[0], accel[2])*180/Math.PI).toFixed(1) + ' deg';
+            document.getElementById('accelMag').textContent = (Math.sqrt(accel[0]*accel[0]+accel[1]*accel[1]+accel[2]*accel[2])/16384).toFixed(3) + ' g';
+            document.getElementById('dewPoint').textContent = (temp - (100 - hum) / 5).toFixed(1) + ' C';
+
+            i2cTxCount += 2; i2cBytesSent += 4; i2cBytesRecv += 6;
+            spiTxCount += 3; spiBytesTx += 12; spiCsToggles += 2;
+            document.getElementById('i2cTxCount').textContent = i2cTxCount;
+            document.getElementById('i2cBytesSent').textContent = i2cBytesSent;
+            document.getElementById('i2cBytesRecv').textContent = i2cBytesRecv;
+            document.getElementById('spiTxCount').textContent = spiTxCount;
+            document.getElementById('spiBytesTx').textContent = spiBytesTx;
+            document.getElementById('spiCsToggles').textContent = spiCsToggles;
+
+            document.getElementById('regBmeTmsb').textContent = '0x' + ((Math.floor(temp * 256) >> 8) & 0xFF).toString(16).padStart(2, '0');
+            document.getElementById('regBmeHmsb').textContent = '0x' + ((Math.floor(hum * 1024) >> 8) & 0xFF).toString(16).padStart(2, '0');
+
             drawChart('tempChart', tempData, '#00ff00');
             drawChart('presChart', presData, '#00ffff');
             drawChart('humChart', humData, '#ffff00');
             drawChart('accelChart', accelXData, '#ff6600');
             drawChart('gyroChart', gyroXData, '#ff00ff');
-
             updateStats();
+            checkAlarms();
+            updatePins();
+
+            if (recording) {
+                recordedData.push({ t: sampleCount, temp, pres, hum, ax: accel[0], ay: accel[1], az: accel[2], gx: gyro[0], gy: gyro[1], gz: gyro[2] });
+                document.getElementById('recDuration').textContent = ((Date.now() - recStartTime) / 1000).toFixed(0) + 's';
+                document.getElementById('recSize').textContent = (JSON.stringify(recordedData).length / 1024).toFixed(1) + ' KB';
+            }
         }
 
         function toggleSimulation() {
             running = !running;
-            const btn = document.getElementById('btnToggle');
-            btn.textContent = running ? 'STOP' : 'START';
-            btn.classList.toggle('active', running);
-
-            const status = document.querySelector('.status');
-            status.classList.toggle('active', running);
-
+            document.getElementById('btnToggle').textContent = running ? 'STOP' : 'START';
+            document.getElementById('btnToggle').classList.toggle('active', running);
+            document.querySelector('.status').classList.toggle('active', running);
             addLog(running ? 'Simulation resumed' : 'Simulation paused', 'warn');
         }
 
@@ -509,38 +675,84 @@
             tempData = []; presData = []; humData = [];
             accelXData = []; accelYData = []; accelZData = [];
             gyroXData = []; gyroYData = []; gyroZData = [];
-            sampleCount = 0;
-            startTime = Date.now();
+            sampleCount = 0; startTime = Date.now();
             addLog('Data reset', 'ok');
         }
 
+        function changeRate() {
+            updateInterval = parseInt(document.getElementById('rateSelect').value);
+            if (intervalId) clearInterval(intervalId);
+            intervalId = setInterval(updateData, updateInterval);
+        }
+
+        function showTab(name) {
+            document.querySelectorAll('[id^="tab-"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById('tab-' + name).classList.remove('hidden');
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function setSimMode(mode) {
+            simMode = mode;
+            document.getElementById('simMode').textContent = mode.toUpperCase();
+            addLog('Simulation mode: ' + mode.toUpperCase(), 'ok');
+        }
+
+        function updateBaseValues() {
+            baseTemp = parseFloat(document.getElementById('baseTemp').value);
+            basePres = parseFloat(document.getElementById('basePres').value);
+            baseHum = parseFloat(document.getElementById('baseHum').value);
+            noiseLevel = parseFloat(document.getElementById('noiseLevel').value);
+            document.getElementById('baseTempVal').textContent = baseTemp.toFixed(1) + ' C';
+            document.getElementById('basePresVal').textContent = basePres.toFixed(0) + ' Pa';
+            document.getElementById('baseHumVal').textContent = baseHum.toFixed(1) + ' %';
+            document.getElementById('noiseLevelVal').textContent = noiseLevel.toFixed(1) + 'x';
+        }
+
+        function updateThresholds() {
+            tempHigh = parseFloat(document.getElementById('tempHigh').value);
+            tempLow = parseFloat(document.getElementById('tempLow').value);
+            humHigh = parseFloat(document.getElementById('humHigh').value);
+            humLow = parseFloat(document.getElementById('humLow').value);
+            presDev = parseFloat(document.getElementById('presDev').value);
+            document.getElementById('tempHighVal').textContent = tempHigh.toFixed(1) + ' C';
+            document.getElementById('tempLowVal').textContent = tempLow.toFixed(1) + ' C';
+            document.getElementById('humHighVal').textContent = humHigh.toFixed(0) + ' %';
+            document.getElementById('humLowVal').textContent = humLow.toFixed(0) + ' %';
+            document.getElementById('presDevVal').textContent = presDev.toFixed(0) + ' Pa';
+        }
+
+        function toggleFault() {
+            const faults = ['NACK','Timeout','CRC','Overrun','Stuck Bus'];
+            const ids = ['faultNack','faultTimeout','faultCrc','faultOverrun','faultStuck'];
+            ids.forEach((id, i) => {
+                if (document.getElementById(id).checked) addLog('FAULT: ' + faults[i] + ' enabled', 'err');
+            });
+        }
+
+        function startRecording() {
+            recording = !recording;
+            document.getElementById('btnRec').textContent = recording ? 'STOP RECORDING' : 'START RECORDING';
+            document.getElementById('recStatus').textContent = recording ? 'RECORDING' : 'STOPPED';
+            document.getElementById('recStatus').style.color = recording ? '#ff0000' : '#00ff00';
+            if (recording) { recStartTime = Date.now(); recordedData = []; addLog('Recording started', 'warn'); }
+            else { addLog('Recording stopped: ' + recordedData.length + ' samples', 'ok'); }
+        }
+
         function exportData() {
-            const data = {
-                timestamp: new Date().toISOString(),
-                samples: sampleCount,
-                sensors: {
-                    bme280: {
-                        temperature: tempData,
-                        pressure: presData,
-                        humidity: humData
-                    },
-                    lsm6ds3: {
-                        accel_x: accelXData,
-                        accel_y: accelYData,
-                        accel_z: accelZData,
-                        gyro_x: gyroXData,
-                        gyro_y: gyroYData,
-                        gyro_z: gyroZData
-                    }
-                }
-            };
+            const data = { timestamp: new Date().toISOString(), samples: sampleCount, sensors: { bme280: { temperature: tempData, pressure: presData, humidity: humData }, lsm6ds3: { accel_x: accelXData, accel_y: accelYData, accel_z: accelZData, gyro_x: gyroXData, gyro_y: gyroYData, gyro_z: gyroZData } } };
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'sensor_data_' + Date.now() + '.json';
-            a.click();
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'sensor_data_' + Date.now() + '.json'; a.click();
             addLog('Data exported to JSON', 'ok');
+        }
+
+        function exportCSV() {
+            const src = recording ? recordedData : tempData.map((t, i) => ({ t: i+1, temp: t, pres: presData[i], hum: humData[i] }));
+            let csv = 'Sample,Temperature(C),Pressure(Pa),Humidity(%),AccelX(mg),AccelY(mg),AccelZ(mg),GyroX(dps),GyroY(dps),GyroZ(dps)\n';
+            src.forEach(d => csv += [d.t, d.temp?.toFixed(2), d.pres?.toFixed(1), d.hum?.toFixed(1), d.ax, d.ay, d.az, d.gx, d.gy, d.gz].join(',') + '\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'sensor_data_' + Date.now() + '.csv'; a.click();
+            addLog('Data exported to CSV', 'ok');
         }
 
         function addLog(msg, type) {
@@ -557,15 +769,11 @@
 
         function updateUptime() {
             const elapsed = Math.floor((Date.now() - startTime) / 1000);
-            const h = Math.floor(elapsed / 3600).toString().padStart(2, '0');
-            const m = Math.floor((elapsed % 3600) / 60).toString().padStart(2, '0');
-            const s = (elapsed % 60).toString().padStart(2, '0');
-            document.getElementById('uptime').textContent = h + ':' + m + ':' + s;
+            document.getElementById('uptime').textContent = new Date(elapsed * 1000).toISOString().substr(11, 8);
         }
 
-        setInterval(updateData, 100);
+        intervalId = setInterval(updateData, updateInterval);
         setInterval(updateUptime, 1000);
-
         addLog('BME280 configured: OSRS_T=2x, OSRS_P=16x, OSRS_H=1x, Normal mode', 'ok');
         addLog('LSM6DS3 configured: XL=119Hz/2g, G=119Hz/245dps', 'ok');
     </script>
