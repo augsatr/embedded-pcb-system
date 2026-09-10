@@ -23,7 +23,17 @@ Custom PCB-based embedded system for multi-sensor data acquisition using I2C and
 - [Testing Options](#testing-options)
 - [Pin Mapping](#pin-mapping)
 - [Bill of Materials](#bill-of-materials)
+- [Performance Metrics](#performance-metrics)
+- [FAQ](#faq)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [Changelog](#changelog)
+- [Roadmap](#roadmap)
+- [References](#references)
 - [Tools Used](#tools-used)
+- [License](#license)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -501,15 +511,273 @@ python sensor_simulator.py 60
 
 ---
 
+## Performance Metrics
+
+| Metric | Value |
+|--------|-------|
+| **Sampling Rate** | 10 Hz (configurable 1-20 Hz) |
+| **I2C Clock** | 100 kHz (Standard Mode) |
+| **SPI Clock** | 4.5 MHz |
+| **Temperature Accuracy** | +/- 1.0 C |
+| **Pressure Accuracy** | +/- 1 hPa |
+| **Humidity Accuracy** | +/- 3% |
+| **Accelerometer Range** | +/- 2/4/8/16 g |
+| **Gyroscope Range** | +/- 245/500/1000/2000 dps |
+| **Boot Time** | < 1 second |
+| **Power Consumption** | ~20 mA active |
+| **Data Latency** | < 10 ms |
+
+---
+
+## FAQ
+
+### General Questions
+
+**Q: What is this project?**
+A: A custom PCB-based embedded system for multi-sensor data acquisition using I2C and SPI communication protocols.
+
+**Q: What sensors are used?**
+A: BME280 (temperature/pressure/humidity via I2C) and LSM6DS3 (6-axis IMU via SPI).
+
+**Q: What microcontroller is used?**
+A: STM32F103C8T6 (ARM Cortex-M3, 72MHz, 64KB Flash, 20KB SRAM).
+
+**Q: Can I use this without hardware?**
+A: Yes! Use the virtual testing environment with Python simulator or web dashboard.
+
+### Technical Questions
+
+**Q: How do I change the I2C address?**
+A: The BME280 address is 0x76 (SDO=0) or 0x77 (SDO=1). Modify `BME280_I2C_ADDR` in the driver.
+
+**Q: How do I change the SPI speed?**
+A: Modify the prescaler in `spi_driver_init()`. Options: DIV2 to DIV128.
+
+**Q: Can I add more sensors?**
+A: Yes! Use the I2C header (J1) or SPI header (J2) to connect additional sensors.
+
+**Q: How do I enable debug output?**
+A: Connect a USB-UART adapter to PA9 (TX) and open a terminal at 115200 baud.
+
+### Virtual Testing Questions
+
+**Q: How do I run the simulation?**
+A: `cd firmware/virtual && make run` or open `virtual-dashboard.html` in a browser.
+
+**Q: Can I export data?**
+A: Yes! Use the EXPORT JSON or EXPORT CSV buttons in the web dashboard.
+
+**Q: How do I simulate faults?**
+A: Go to SIM CONFIG tab and enable fault injection checkboxes.
+
+---
+
+## Troubleshooting
+
+### Hardware Issues
+
+| Problem | Possible Cause | Solution |
+|---------|---------------|----------|
+| MCU won't start | Missing BOOT0 pulldown | Add 10k resistor to GND |
+| No I2C response | Missing pull-ups | Add 4.7k resistors on SCL/SDA |
+| SPI data corruption | Clock too high | Reduce prescaler to DIV32 |
+| BME280 returns 0xFF | Wrong address | Try 0x76 or 0x77 |
+| LSM6DS3 returns 0x00 | CS not toggling | Check PA4 connection |
+| LED not blinking | Wrong pin config | Verify PC13 connection |
+| No serial output | Baud rate mismatch | Use 115200 baud |
+| Power supply noise | Missing capacitors | Add 100nF decoupling caps |
+
+### Software Issues
+
+| Problem | Possible Cause | Solution |
+|---------|---------------|----------|
+| Build fails | Missing toolchain | Install arm-none-eabi-gcc |
+| Flash fails | ST-Link not connected | Check SWD connections |
+| Simulation crashes | Wrong make target | Run `make clean && make all` |
+| Dashboard not working | Browser compatibility | Use Chrome/Firefox/Edge |
+| Data not exporting | File permission | Check download folder |
+| High CPU usage | Update rate too fast | Increase interval to 200ms+ |
+
+### Debug Commands
+
+```bash
+# Check I2C devices
+i2cdetect -y 1
+
+# Read BME280 register
+i2cget -y 1 0x76 0xD0
+
+# Read LSM6DS3 WHO_AM_I
+spi-pipe -D /dev/spidev0.0 -s 1000000 -b 8 -l LSB -m 1 -H 1 -C 0 -r 1 0x8F | hexdump
+
+# Monitor serial output
+screen /dev/ttyUSB0 115200
+
+# Flash firmware
+st-flash write firmware.bin 0x08000000
+
+# Run GDB debug
+arm-none-eabi-gdb firmware.elf -ex "target remote :3333"
+```
+
+---
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- Follow existing code style
+- Add comments for complex logic
+- Update documentation for new features
+- Test on hardware before submitting
+- Keep commits focused and atomic
+
+### Code Style
+
+```c
+// Use descriptive variable names
+uint8_t sensor_address = 0x76;
+
+// Add function headers
+/**
+ * @brief Initialize BME280 sensor
+ * @param hi2c I2C handle pointer
+ * @param addr Sensor I2C address
+ * @return 0 on success, error code otherwise
+ */
+uint8_t bme280_init(bme280_handle_t *hbme, i2c_handle_t *hi2c, uint8_t addr);
+
+// Use meaningful comments
+// Read temperature compensation coefficients from NVM
+```
+
+---
+
+## Changelog
+
+### v1.0.0 (2026-09-10)
+- Initial release
+- KiCad PCB design
+- STM32F103 firmware
+- BME280 I2C driver
+- LSM6DS3 SPI driver
+- Hardware test suite
+- Virtual testing environment
+- Web dashboard
+
+### v1.1.0 (Planned)
+- [ ] Add more sensor drivers
+- [ ] RTOS support
+- [ ] WiFi/Bluetooth connectivity
+- [ ] Mobile app
+- [ ] Cloud data logging
+- [ ] Battery management
+- [ ] Low power modes
+
+---
+
+## Roadmap
+
+### Phase 1: Core (Complete)
+- [x] PCB design and fabrication
+- [x] Basic firmware structure
+- [x] I2C driver
+- [x] SPI driver
+- [x] BME280 driver
+- [x] LSM6DS3 driver
+
+### Phase 2: Testing (Complete)
+- [x] Hardware test suite
+- [x] Virtual simulation
+- [x] Web dashboard
+- [x] Protocol analyzer
+- [x] Data export
+
+### Phase 3: Enhancement (In Progress)
+- [ ] More sensor support
+- [ ] Data logging to SD card
+- [ ] Wireless connectivity
+- [ ] Mobile application
+- [ ] Cloud integration
+
+### Phase 4: Production (Future)
+- [ ] Enclosure design
+- [ ] Manufacturing setup
+- [ ] Quality testing
+- [ ] Documentation
+- [ ] Support portal
+
+---
+
+## References
+
+### Datasheets
+- [STM32F103C8T6 Datasheet](https://www.st.com/resource/en/datasheet/stm32f103c8.pdf)
+- [BME280 Datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme280-ds002.pdf)
+- [LSM6DS3 Datasheet](https://www.st.com/resource/en/datasheet/lsm6ds3.pdf)
+- [LM1117 Datasheet](https://www.ti.com/lit/ds/symlink/lm1117.pdf)
+
+### Application Notes
+- [AN2581: STM32 I2C Programming](https://www.st.com/resource/en/application_note/an2581.pdf)
+- [AN3169: SPI Communication with STM32](https://www.st.com/resource/en/application_note/an3169.pdf)
+- [AN4235: LSM6DS3 Usage](https://www.st.com/resource/en/application_note/an4235.pdf)
+
+### Tools
+- [KiCad Documentation](https://docs.kicad.org/)
+- [ARM GCC Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm)
+- [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html)
+- [OpenOCD](https://openocd.org/)
+
+### Community
+- [STM32 Community](https://community.st.com/)
+- [KiCad Forum](https://forum.kicad.info/)
+- [Embedded Systems Discord](https://discord.gg/embedded-systems)
+
+---
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2026 SIH Hackathon Project - augsatr
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ---
 
 ## Author
 
 **augsatr** - [GitHub](https://github.com/augsatr)
+
+[![GitHub followers](https://img.shields.io/github/followers/augsatr?style=social)](https://github.com/augsatr)
 
 ---
 
@@ -519,3 +787,18 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Bosch Sensortec for BME280 datasheet
 - KiCad team for open-source PCB design tools
 - ARM for Cortex-M3 toolchain
+- All contributors and supporters
+
+---
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=augsatr/embedded-pcb-system&type=Date)](https://star-history.com/#augsatr/embedded-pcb-system&Date)
+
+---
+
+## Support
+
+If you find this project helpful, please give it a star on GitHub!
+
+For issues and questions, please open an issue on the [GitHub Issues](https://github.com/augsatr/embedded-pcb-system/issues) page.
